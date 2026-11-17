@@ -10,7 +10,7 @@ def cadastrar_usuario():
     nome = input("Nome: ").strip()
     email = input("Email: ").strip().lower()
     senha = getpass("Senha: ", echo_char="*").encode("utf-8")
-    confirmacao_senha = getpass("Confirme a senha: ")
+    confirmacao_senha = getpass("Confirme a senha: ", echo_char="*").encode("utf-8")
 
     if not nome or len(nome) > 100:
         print("Nome inválido. Deve ter entre 1 e 100 caracteres.")

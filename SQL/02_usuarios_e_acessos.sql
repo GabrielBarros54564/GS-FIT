@@ -1,23 +1,25 @@
-begin;
+BEGIN;
 
-create table usuario (
-    codigo_usuario int generated always as identity primary key,
-    nome_usuario varchar(100) not null,
-    email_usuario varchar(100) not null unique,
-    senha_hash text not null
+CREATE TABLE usuario (
+    codigo_usuario INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(254) NOT NULL UNIQUE,
+    senha_hash TEXT NOT NULL
 );
 
-alter Table aluno
-    add column codigo_usuario int not null REFERENCES usuario(codigo_usuario);
-    add constraint uq_aluno_conta UNIQUE (codigo_usuario, codigo_aluno);
+ALTER TABLE aluno
+    ADD COLUMN codigo_usuario INT NOT NULL REFERENCES usuario (codigo_usuario),
+    ADD CONSTRAINT uq_aluno_conta UNIQUE (codigo_usuario, codigo_aluno);
 
-alter Table instrutor
-    add column codigo_usuario int not null REFERENCES usuario(codigo_usuario);
-    add constraint uq_instrutor_conta UNIQUE (codigo_usuario, codigo_instrutor);  r
+ALTER TABLE instrutor
+    ADD COLUMN codigo_usuario INT NOT NULL REFERENCES usuario (codigo_usuario),
+    ADD CONSTRAINT uq_instrutor_conta UNIQUE (codigo_usuario, codigo_instrutor);
 
-alter TABLE treino
-    add column codigo_usuario int not null REFERENCES usuario(codigo_usuario);
-    add constraint fk_treinno_aluno_conta foreign key (codigo_usuario, codigo_aluno) references aluno(codigo_usuario, codigo_aluno),
-    add constraint fk_treinno_instrutor_conta foreign key (codigo_usuario, codigo_instrutor) references instrutor(codigo_usuario, codigo_instrutor);
+ALTER TABLE treino
+    ADD COLUMN codigo_usuario INT NOT NULL REFERENCES usuario (codigo_usuario),
+    ADD CONSTRAINT fk_treino_aluno_conta FOREIGN KEY (codigo_usuario, codigo_aluno)
+        REFERENCES aluno (codigo_usuario, codigo_aluno),
+    ADD CONSTRAINT fk_treino_instrutor_conta FOREIGN KEY (codigo_usuario, codigo_instrutor)
+        REFERENCES instrutor (codigo_usuario, codigo_instrutor);
 
-commit;
+COMMIT;

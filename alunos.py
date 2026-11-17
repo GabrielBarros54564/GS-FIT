@@ -77,7 +77,7 @@ def cadastrar_aluno(codigo_usuario):
 
     try:
         with closing(abrir_conexao()) as conexao:
-            with conexao.cursor() as cursor:
+            with conexao, conexao.cursor() as cursor:
                 cursor.execute(
                      """
                     INSERT INTO aluno
@@ -127,7 +127,7 @@ def editar_aluno(codigo_usuario):
 
     try:
         with closing(abrir_conexao()) as conexao:
-            with conexao.cursor() as cursor:
+            with conexao, conexao.cursor() as cursor:
                 cursor.execute(
                        """
                     UPDATE aluno
@@ -156,7 +156,7 @@ def excluir_aluno(codigo_usuario):
 
     try:
         with closing(abrir_conexao()) as conexao:
-            with conexao.cursor() as cursor:
+            with conexao, conexao.cursor() as cursor:
                 cursor.execute(
                       """
                     DELETE FROM aluno
