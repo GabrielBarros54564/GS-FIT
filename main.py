@@ -1,9 +1,8 @@
-#from instrutores import menu_instrutores
-#from treinos import menu_treinos
-
 from psycopg2 import OperationalError
 
 from alunos import menu_alunos
+from instrutores import menu_instrutores
+from treinos import menu_treinos
 from usuarios import cadastrar_usuario, fazer_login
 
 
@@ -34,8 +33,10 @@ def menu_principal(codigo_usuario):
 
         if opcao == "1":
             menu_alunos(codigo_usuario)
-        elif opcao in ("2", "3"):
-            print("Este módulo está em desenvolvimento.")
+        elif opcao == "2":
+            menu_instrutores(codigo_usuario)
+        elif opcao == "3":
+            menu_treinos(codigo_usuario)
         elif opcao == "0":
             print("Você saiu da conta.")
             return
